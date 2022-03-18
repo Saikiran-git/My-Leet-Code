@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        map<int, int> um;
+        for(int i = 0; i < numbers.size(); i++)
+            um[numbers[i]] = i;
+        /*for(int i = 0; i < um.size(); i++){
+            cout << um[i] << " ";
+        }*/
+        vector<int> v;
+        for(int i = 0 ; i < numbers.size() ; i++){
+            if(um.count(target - numbers[i]) > 0 && um[target - numbers[i]] != i){
+                v.push_back(i + 1);
+                v.push_back(um[target - numbers[i]] + 1);
+                return v;
+            }
+        }
+        return v;
+    }
+};

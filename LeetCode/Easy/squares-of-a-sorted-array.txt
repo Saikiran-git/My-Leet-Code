@@ -1,0 +1,15 @@
+class Solution {
+public:
+    
+    inline int numSquare(int i){
+        return i * i;
+    }
+    
+    vector<int> sortedSquares(vector<int>& nums) {
+        vector<int> res;
+        for(int i = 0; i < nums.size(); i++)
+            res.push_back(numSquare(nums.at(i)));
+        sort(res.begin(), res.end());
+        return res;
+    }
+};

@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        int sum = 0;
+        
+        // MCMXCIV
+        // M < C = 1000
+        // C < M = 1000 - 100 = 900
+        // M < X = 900 + 1000 = 1900
+        // X < C = 1900 - 10 = 1890
+        // C < I = 1890 + 100 = 1990
+        // I < V = 1990 - 1 = 1989
+        // V = 1989 + 5 = 1994
+        
+        map<char, int> mp;
+        mp.insert({'I', 1});
+        mp.insert({'V', 5});
+        mp.insert({'X', 10});
+        mp.insert({'L', 50});
+        mp.insert({'C', 100});
+        mp.insert({'D', 500});
+        mp.insert({'M', 1000});
+        
+        for(int i = 0; i < s.length(); i++){
+            (mp[s[i]] < mp[s[i + 1]]) ? sum -= mp[s[i]] : sum += mp[s[i]];
+        }
+        
+        return sum;
+    }
+};

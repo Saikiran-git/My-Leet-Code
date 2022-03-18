@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.empty()){
+            return false;
+        }
+        stack<char> str;
+        for(char ele : s){
+           if(ele == '(' || ele =='{' || ele == '['){
+               str.push(ele);
+           }            
+            else {
+                if(str.empty() || (ele == ')' && str.top() != '(') || (ele == '}' && str.top() != '{' ) || (ele == ']' && str.top() != '['))              
+                    return false;
+                str.pop();            
+            }     
+        }
+        return str.empty();
+    }
+};

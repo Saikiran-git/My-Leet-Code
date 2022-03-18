@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        try{
+            return stoi(s);
+        }
+        catch(const invalid_argument){
+            return 0;
+        }
+        catch(const out_of_range){
+            if(s[s.find_first_not_of(' ')] == '-') 
+                return INT_MIN;
+            return INT_MAX;
+        }
+    }
+};

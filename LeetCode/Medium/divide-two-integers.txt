@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if(dividend == divisor)
+            return 1;
+        
+        bool yes = (dividend < 0 == divisor < 0);
+        unsigned int a = abs(dividend); //to positive
+        unsigned int b = abs(divisor); //to positive
+        unsigned int res = 0;
+        
+        //-231 3
+        
+        while(a >= b){ 
+            short q = 0;
+            while(a > (b << (q + 1))){
+                //cout << q + 1 << " "<< (b << (q + 1)) << endl;
+                q++;
+            }
+            res += (1 << q);
+            //cout << res << " " << q << " " << (1 << q) << endl;
+            a -= (b << q);
+            //cout << a << " " << (b << q) << endl;
+        }
+        if(res == (1 << 31) and yes) // when res > signed in
+            return INT_MAX;
+        return yes ? res : -res;
+    }
+};

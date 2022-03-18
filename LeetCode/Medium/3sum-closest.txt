@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        
+        std::sort(nums.begin(), nums.end());
+        int n = nums.size();
+
+        int sum = nums.at(0) + nums.at(1) + nums.at(2);
+        for(int i = 0; i < n - 2; i++){ 
+            int ptr1 = i + 1;
+            int ptr2 = n - 1;
+            while(ptr1 < ptr2){
+                int temp = nums.at(i) + nums.at(ptr1) + nums.at(ptr2);
+                if(abs(temp - target) < abs(sum - target)) 
+                    sum = temp;
+                if(temp > target)
+                    ptr2--;
+                else if(temp < target)
+                    ptr1++;
+                else
+                    return target;
+            }
+        }
+        return sum;
+    }
+};

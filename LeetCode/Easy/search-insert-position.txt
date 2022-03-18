@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int n = nums.size();
+        int res = 0;
+        vector<int>::iterator it;
+        int c = 0;
+        c = count(nums.begin(), nums.end(), target);
+        if(c > 0){
+            vector<int>::iterator it1;
+            it1 = find(nums.begin(), nums.end(), target);
+            if(it1 != nums.end()){
+                res = it1 - nums.begin();
+            }
+        }
+        else{
+            for(int i = nums.size() - 1; i >= 0; i--){
+                if(nums.at(i) < target){
+                    res = i + 1;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
+
+
+Python Solution
+
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        for i in range(0, len(nums)):
+            if nums[i] >= target:
+                return i
+            elif i == (len(nums) - 1):
+                return len(nums)
